@@ -124,7 +124,11 @@ void Core::handleKeyboardEvent(SDL_KeyboardEvent keyEvent) {
 		case SDLK_r: // reset
 			if (pressed) {
 				if (modShift) {
-					powerOn();
+					// reset everything
+					bus.clearMem();
+					cpu.powerOn();
+					ppu.reset();
+					cart->mapper->reset();
 				}
 				reset();
 			}
