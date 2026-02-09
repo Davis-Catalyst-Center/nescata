@@ -64,13 +64,13 @@ void Composite::renderBackgroundAtLine(int scanline, uint32_t* lineBuf) {
 	int ntlx = scrollX > 256 ? 512 - scrollX : -scrollX;
 	int ntty = scrollY > 240 ? 496 - scrollY : -scrollY;
 
-	renderNametableAtLine(scanline, 0, ntlx,          ntty,       lineBuf);
-	renderNametableAtLine(scanline, 1, 256 - scrollX, ntty,       lineBuf);
-	renderNametableAtLine(scanline, 2, ntlx,          ntty + 240, lineBuf);
-	renderNametableAtLine(scanline, 3, 256 - scrollX, ntty + 240, lineBuf);
+	renderNametableAtLine(0, scanline, ntlx,          ntty,       lineBuf);
+	renderNametableAtLine(1, scanline, 256 - scrollX, ntty,       lineBuf);
+	renderNametableAtLine(2, scanline, ntlx,          ntty + 240, lineBuf);
+	renderNametableAtLine(3, scanline, 256 - scrollX, ntty + 240, lineBuf);
 }
 
-void Composite::renderNametableAtLine(int scanline, int nametableIdx, int xPos, int yPos, uint32_t* lineBuf) {
+void Composite::renderNametableAtLine(int nametableIdx, int scanline, int xPos, int yPos, uint32_t* lineBuf) {
 	int lineInNametable = scanline - yPos;
 	if (lineInNametable < -240) lineInNametable += 480;
 	if (lineInNametable < 0 || lineInNametable >= 240) {
